@@ -15,7 +15,6 @@ mongoose.connect(process.env.DB,{
     useUnifiedTopology:true,
 })
 //api
-app.get('/',(req,res)=>res.status(200).send('hi dhere'));
 app.post('/tinder/cards',(req,res)=>{
     const dbCard=req.body;
     Cards.create(dbCard,(err,data)=>{
