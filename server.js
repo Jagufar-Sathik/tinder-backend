@@ -5,21 +5,16 @@ import cors from "cors"
 //app config
 const app= express();
 const port=process.env.PORT||8001;
-const connection_url='mongodb+srv://admin:ramisyed22@cluster0.zbo38.mongodb.net/tinder-db?retryWrites=true&w=majority'
-
-//middlewares
 app.use(express.json())
 app.use(cors());
 
 //db config
-mongoose.connect(connection_url,{
+mongoose.connect(process.env.DB,{
     useNewUrlParser:true,
     useCreateIndex:true,
     useUnifiedTopology:true,
 })
-
-
-//api endpoint
+//api
 app.get('/',(req,res)=>res.status(200).send('hi dhere'));
 app.post('/tinder/cards',(req,res)=>{
     const dbCard=req.body;
@@ -43,7 +38,5 @@ app.get('/tinder/cards',(req,res) => {
         }
 })
 })
-
-//listener
 app.listen(port,()=>
 console.log(`listening local host: ${port}`));
